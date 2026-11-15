@@ -1,0 +1,10 @@
+/* Responsive */
+@media (max-width:1060px){
+  .hero-grid,.contact,.contact.contact-3{grid-template-columns:1fr}
+  .c3{--c:2}.c4{--c:2}
+}
+@media (max-width:960px){
+  .wrap{padding-inline:22px}.sec{padding-block:72px}.hero{padding-top:64px}
+  .foot{padding-bottom:140px}
+}
+@media (max-width:640px){.c3,.c4{--c:1}.two{grid-template-columns:1fr}}

@@ -1,0 +1,6 @@
+/* Logo */
+.logo{margin-bottom:26px;line-height:1}
+.logo b{font-size:2rem;font-weight:800;letter-spacing:-.04em;color:var(--head)}
+.logo b span{color:var(--ac)}
+.logo small{display:block;font-size:.72rem;color:var(--mut);margin-top:4px;font-weight:500}
+.logo.light b{color:var(--on-deep)}.logo.light b span{color:var(--on-deep-mut)}.logo.light small{color:var(--on-deep-mut)}

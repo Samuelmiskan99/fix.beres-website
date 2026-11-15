@@ -1,0 +1,405 @@
+/* =========================================================
+   CONTACT US: ULTRA-CLEAN 3-COLUMN INTERACTIVE LAYOUT
+   ========================================================= */
+#kontak .wrap {
+  max-width: 1220px;
+}
+
+.contact-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+
+.c-card {
+  position: relative;
+  border-radius: 22px;
+  padding: 24px;
+  background: hsl(var(--h) 30% 7.5% / 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(0 0% 100% / 0.09);
+  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  color: #f8fafc;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.c-card:hover {
+  border-color: hsl(var(--h) 85% 58% / 0.38);
+}
+
+.c-card-top {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.c-step-badge {
+  font: 600 0.68rem "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ac);
+}
+
+.c-card-title {
+  font-family: Outfit, "Plus Jakarta Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.c-card-title span {
+  color: var(--ac);
+}
+
+.c-card-sub {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #94a3b8;
+}
+
+/* ================= KARTU 1: MODE PENGERJAAN ================= */
+.c-mode-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-block: auto;
+}
+
+.c-mode-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid hsl(0 0% 100% / 0.08);
+  background: hsl(0 0% 100% / 0.025);
+  color: #e2e8f0;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.c-mode-item:hover {
+  border-color: hsl(var(--h) 85% 60% / 0.4);
+  background: hsl(0 0% 100% / 0.05);
+}
+
+.c-mode-item.active {
+  border-color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 12%, transparent);
+}
+
+.c-mode-ic {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: hsl(0 0% 100% / 0.06);
+  color: #94a3b8;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.c-mode-item.active .c-mode-ic {
+  background: var(--ac);
+  color: var(--on-ac);
+}
+
+.c-mode-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.c-mode-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.c-mode-head strong {
+  font-size: 0.88rem;
+  color: #ffffff;
+}
+
+.c-mode-eta {
+  font: 600 0.68rem "JetBrains Mono", ui-monospace, monospace;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: hsl(0 0% 100% / 0.07);
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+.c-mode-item.active .c-mode-eta {
+  background: color-mix(in srgb, var(--ac) 25%, transparent);
+  color: #5eead4;
+}
+
+.c-mode-info small {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+.c-clean-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid hsl(0 0% 100% / 0.08);
+  font-size: 0.76rem;
+  color: #94a3b8;
+}
+
+.c-clean-footer svg {
+  color: var(--ac);
+  flex-shrink: 0;
+}
+
+.c-online-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+/* ================= KARTU 2: KONTAK LANGSUNG ================= */
+.c-ch-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-block: auto;
+}
+
+.c-ch-clean {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid hsl(0 0% 100% / 0.08);
+  background: hsl(0 0% 100% / 0.025);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.c-ch-clean:hover,
+.c-ch-clean.active {
+  border-color: var(--ac);
+  background: color-mix(in srgb, var(--ac) 10%, transparent);
+}
+
+.c-ch-ic {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ac) 16%, transparent);
+  color: var(--ac);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.c-ch-clean.active .c-ch-ic {
+  background: var(--ac);
+  color: var(--on-ac);
+}
+
+.c-ch-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.c-ch-label {
+  display: block;
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+.c-ch-val {
+  display: block;
+  font-size: 0.86rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.c-ch-inline-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.c-mini-btn {
+  height: 32px;
+  padding-inline: 10px;
+  border-radius: 9px;
+  border: 1px solid hsl(0 0% 100% / 0.14);
+  background: hsl(0 0% 100% / 0.06);
+  color: #ffffff;
+  font: 600 0.74rem "Plus Jakarta Sans", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.c-mini-btn:hover {
+  border-color: var(--ac);
+  background: hsl(0 0% 100% / 0.12);
+}
+
+.c-mini-btn.copied {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.c-mini-btn.primary {
+  background: var(--ac);
+  border-color: var(--ac);
+  color: var(--on-ac);
+}
+
+.c-mini-btn.primary:hover {
+  filter: brightness(1.08);
+}
+
+/* ================= KARTU 3: FORM ORDER INSTAN ================= */
+.c-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.c-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.c-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.c-field label,
+.c-label-text {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.c-form input,
+.c-form select,
+.c-form textarea {
+  width: 100%;
+  padding: 9px 12px;
+  border-radius: 11px;
+  border: 1px solid hsl(0 0% 100% / 0.12);
+  background: hsl(var(--h) 35% 5% / 0.85);
+  color: #ffffff;
+  font: 500 0.83rem "Plus Jakarta Sans", sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.c-form input::placeholder,
+.c-form textarea::placeholder {
+  color: #64748b;
+}
+
+.c-form input:focus,
+.c-form select:focus,
+.c-form textarea:focus {
+  outline: none;
+  border-color: var(--ac);
+  box-shadow: 0 0 0 3px hsl(var(--h) 85% 50% / 0.15);
+}
+
+.c-tags-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.c-tag-btn {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid hsl(0 0% 100% / 0.1);
+  background: hsl(0 0% 100% / 0.03);
+  color: #94a3b8;
+  font: 600 0.71rem "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.c-tag-btn:hover {
+  border-color: var(--ac);
+  color: #ffffff;
+}
+
+.c-tag-btn.on {
+  background: color-mix(in srgb, var(--ac) 20%, transparent);
+  border-color: var(--ac);
+  color: #5eead4;
+}
+
+.c-submit-btn {
+  margin-top: auto;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: none;
+  background: #ffffff;
+  color: #042f2e;
+  font: 800 0.88rem "Plus Jakarta Sans", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.c-submit-btn:hover {
+  background: var(--ac);
+  color: var(--on-ac);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1060px) {
+  .contact-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .c-field-row {
+    grid-template-columns: 1fr;
+  }
+}

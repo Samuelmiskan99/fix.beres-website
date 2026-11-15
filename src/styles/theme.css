@@ -1,0 +1,10 @@
+/* Mode gelap: hanya mengganti token; hue tetap sama */
+:root[data-theme='dark']{
+  --bg:hsl(var(--h) 30% 4%);--surface:hsl(var(--h) 22% 8%);--tint:hsl(var(--h) 26% 5.5%);
+  --bd:hsl(var(--h) 14% 16%);--tx:hsl(var(--h) 14% 86%);--mut:hsl(var(--h) 10% 62%);--head:hsl(var(--h) 25% 97%);
+  --g1:hsl(var(--h) 90% 76%);--g2:hsl(var(--h) 90% 54%);--mesh:.42;--grain:.09;
+  --ac:hsl(var(--h) 80% 55%);--ac-d:hsl(var(--h) 85% 64%);--ac-soft:hsl(var(--h) 45% 14%);--on-ac:hsl(var(--h) 50% 8%);
+  --deep:hsl(var(--h) 40% 11%);
+  --sh:0 14px 40px rgba(0,0,0,.5);--veil:hsl(var(--h) 40% 3% / .65);color-scheme:dark
+}
+body,.sec,.faq details,.form,.eyebrow,.card,.panel{transition:background-color .4s,color .4s,border-color .4s}

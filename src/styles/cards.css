@@ -1,0 +1,18 @@
+/* Cards */
+.grid{display:grid;gap:20px;grid-template-columns:repeat(var(--c),1fr)}
+.c3{--c:3}.c4{--c:4}
+.card{--rx:0deg;--ry:0deg;position:relative;overflow:hidden;background:var(--card);border:1px solid var(--bd);border-radius:20px;padding:26px;display:flex;flex-direction:column;transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));transition:transform .15s ease-out,box-shadow .25s,border-color .25s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),hsl(var(--h) 80% 50% / .18),transparent 70%);opacity:0;transition:opacity .25s;pointer-events:none}
+.card:hover{transform:perspective(900px) translateY(-4px) rotateX(var(--rx)) rotateY(var(--ry));box-shadow:var(--sh);border-color:var(--ac)}
+.card:hover::before{opacity:1}
+.card[role=button]{cursor:pointer;user-select:none}
+.card.done{border-color:var(--ac);background:var(--ac-soft)}
+.num{transition:transform .3s cubic-bezier(.3,1.6,.5,1),background .2s}.card.done .num{transform:scale(1.15) rotate(-8deg)}
+.progress{margin-bottom:22px;display:grid;gap:8px;max-width:420px}
+.progress small{color:var(--mut);font-weight:600}
+.progress-bar{height:8px;border-radius:99px;background:var(--bd);overflow:hidden}
+.progress-bar span{display:block;height:100%;background:var(--ac);transform-origin:left;transition:transform .45s cubic-bezier(.3,1.2,.5,1)}
+.card h3{color:var(--head)}
+.card p{color:var(--mut);font-size:.92rem}
+.ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:var(--ac-soft);color:var(--ac-d);margin-bottom:16px;font-weight:800;font-size:1.3rem}
+.num{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--ac);color:var(--on-ac);font-weight:800;margin-bottom:16px}

@@ -1,0 +1,8 @@
+/* Header kaca */
+.top{position:fixed;inset:0 0 auto 0;z-index:60;height:64px;display:flex;align-items:center;background:color-mix(in srgb,var(--bg) 62%,transparent);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top,0px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.top-logo{display:flex;align-items:center;gap:10px;font-size:1.2rem;font-weight:800;letter-spacing:-.04em;color:var(--head);text-decoration:none}
+.top-logo span{color:var(--ac)}
+.top-logo i{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;background:var(--ac);color:var(--on-ac);font:800 .78rem "Plus Jakarta Sans",sans-serif;letter-spacing:0;font-style:normal}
+.top-actions{display:flex;align-items:center;gap:12px}
+@media (max-width:520px){.top .btn.sm{padding:8px 14px}}

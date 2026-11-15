@@ -1,0 +1,703 @@
+/* =========================================================
+   CARA ORDER: INTERACTIVE PIPELINE STEPPER & LIVE TERMINAL
+   ========================================================= */
+.steps-interactive-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.steps-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px solid var(--bd);
+}
+
+.steps-progress-info {
+  flex: 1;
+  min-width: 240px;
+  max-width: 460px;
+  display: grid;
+  gap: 7px;
+}
+
+.steps-progress-info small {
+  color: var(--mut);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.steps-progress-track {
+  height: 8px;
+  border-radius: 99px;
+  background: var(--bd);
+  overflow: hidden;
+}
+
+.steps-progress-track span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--ac), hsl(var(--h) 90% 65%));
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.steps-toolbar-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.steps-sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 15px;
+  border-radius: 99px;
+  border: 1px solid var(--ac);
+  background: color-mix(in srgb, var(--ac) 14%, transparent);
+  color: var(--ac-d);
+  font: 700 0.78rem "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.steps-sim-btn:hover:not(:disabled) {
+  background: var(--ac);
+  color: var(--on-ac);
+  transform: translateY(-1px);
+}
+
+.steps-sim-btn.playing {
+  opacity: 0.75;
+  cursor: wait;
+}
+
+.steps-reset-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--bd);
+  background: transparent;
+  color: var(--mut);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.steps-reset-btn:hover {
+  border-color: var(--ac);
+  color: var(--head);
+  transform: rotate(-45deg);
+}
+
+/* 4 Kartu Langkah Terhubung */
+.steps-pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.step-node-card {
+  cursor: pointer;
+  user-select: none;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 22px;
+  border-width: 1.5px;
+}
+
+.step-node-card.is-done {
+  border-color: color-mix(in srgb, var(--ac) 45%, var(--bd));
+}
+
+.step-node-card.is-active {
+  border-color: var(--ac);
+  background: color-mix(in srgb, var(--ac-soft) 55%, var(--surface));
+  box-shadow: 0 18px 40px -14px hsl(var(--h) 85% 45% / 0.28),
+              0 0 0 1px var(--ac);
+}
+
+.step-node-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.step-num-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--ac);
+  background: transparent;
+  color: var(--ac);
+  font: 800 0.92rem "Plus Jakarta Sans", sans-serif;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+
+.step-node-card.is-done .step-num-btn,
+.step-node-card.is-active .step-num-btn {
+  background: var(--ac);
+  color: var(--on-ac);
+  box-shadow: 0 0 16px hsl(var(--h) 85% 50% / 0.4);
+}
+
+.step-node-card.is-active .step-num-btn {
+  transform: scale(1.1);
+}
+
+.step-eta-pill {
+  font: 600 0.68rem "JetBrains Mono", ui-monospace, monospace;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--ac-soft) 80%, transparent);
+  color: var(--ac-d);
+  border: 1px solid color-mix(in srgb, var(--ac) 25%, transparent);
+}
+
+.step-kicker-tag {
+  font: 700 0.68rem "JetBrains Mono", ui-monospace, monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ac-d);
+}
+
+.step-node-card h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.step-node-card p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.step-node-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin-top: 4px;
+  border-top: 1px dashed var(--bd);
+  font: 700 0.74rem "JetBrains Mono", ui-monospace, monospace;
+  color: var(--mut);
+}
+
+.step-node-card.is-active .step-node-foot {
+  color: var(--ac-d);
+}
+
+.step-arrow-ic {
+  transition: transform 0.2s ease;
+}
+
+.step-node-card:hover .step-arrow-ic,
+.step-node-card.is-active .step-arrow-ic {
+  transform: translateX(4px);
+  color: var(--ac);
+}
+
+/* Spotlight Simulasi Tahapan Aktif */
+.step-spotlight-panel {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 22px;
+  align-items: center;
+  padding: 26px 28px;
+  border-radius: 22px;
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--ac) 40%, var(--bd));
+  box-shadow: var(--sh);
+  animation: in 0.3s ease;
+}
+
+.step-spotlight-left {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step-spotlight-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  font: 700 0.7rem "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.08em;
+  color: var(--ac-d);
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--ac-soft);
+}
+
+.step-spotlight-left h4 {
+  font-family: Outfit, "Plus Jakarta Sans", sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--head);
+  margin: 0;
+}
+
+.step-spotlight-left p {
+  font-size: 0.9rem;
+  color: var(--mut);
+  margin: 0;
+  max-width: 540px;
+}
+
+.step-spotlight-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.step-next-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 99px;
+  border: 1px solid var(--ac);
+  background: var(--ac);
+  color: var(--on-ac);
+  font: 700 0.82rem "Plus Jakarta Sans", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.step-next-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.step-jump-btn {
+  padding: 10px 16px;
+  border-radius: 99px;
+  border: 1px solid var(--bd);
+  background: transparent;
+  color: var(--head);
+  font: 600 0.82rem "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.step-jump-btn:hover {
+  border-color: var(--ac);
+}
+
+/* Terminal Preview Box */
+.step-spotlight-terminal {
+  border-radius: 16px;
+  overflow: hidden;
+  background: hsl(var(--h) 35% 6%);
+  border: 1px solid hsl(0 0% 100% / 0.12);
+  color: #e2e8f0;
+}
+
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  background: hsl(0 0% 100% / 0.05);
+  border-bottom: 1px solid hsl(0 0% 100% / 0.08);
+  font: 600 0.7rem "JetBrains Mono", ui-monospace, monospace;
+  color: #94a3b8;
+}
+
+.terminal-bar span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.terminal-dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: hsl(0 0% 100% / 0.2);
+}
+
+.terminal-dots i:nth-child(1) { background: #f87171; }
+.terminal-dots i:nth-child(2) { background: #fbbf24; }
+.terminal-dots i:nth-child(3) { background: #34d399; }
+
+.terminal-body {
+  padding: 14px 16px;
+  display: grid;
+  gap: 9px;
+}
+
+.terminal-line {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font: 500 0.78rem "JetBrains Mono", ui-monospace, monospace;
+  color: #cbd5e1;
+}
+
+.terminal-line svg {
+  color: #34d399;
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   FAQ: 2-COLUMN INTERACTIVE EXPLORER & HELPER ASIDE
+   ========================================================= */
+.faq-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.faq-main {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.faq-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.faq-cat-btn {
+  padding: 7px 14px;
+  border-radius: 99px;
+  border: 1px solid var(--bd);
+  background: var(--surface);
+  color: var(--mut);
+  font: 600 0.78rem "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.faq-cat-btn:hover {
+  border-color: var(--ac);
+  color: var(--head);
+}
+
+.faq-cat-btn.on {
+  background: var(--ac);
+  border-color: var(--ac);
+  color: var(--on-ac);
+}
+
+.faq-search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border-radius: 99px;
+  background: var(--surface);
+  border: 1px solid var(--bd);
+  color: var(--mut);
+  min-width: 220px;
+}
+
+.faq-search:focus-within {
+  border-color: var(--ac);
+}
+
+.faq-search input {
+  border: none;
+  background: transparent;
+  color: var(--head);
+  font: 500 0.8rem "Plus Jakarta Sans", sans-serif;
+  width: 100%;
+  outline: none;
+}
+
+.faq-list {
+  display: grid;
+  gap: 11px;
+}
+
+.qa {
+  background: var(--surface);
+  border: 1px solid var(--bd);
+  border-radius: 18px;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.qa:hover,
+.qa.open {
+  border-color: var(--ac);
+}
+
+.qa.open {
+  box-shadow: var(--sh);
+}
+
+.qa button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font: 700 0.95rem "Plus Jakarta Sans", sans-serif;
+  color: var(--head);
+  padding: 17px 20px;
+}
+
+.qa-num {
+  font: 700 0.72rem "JetBrains Mono", ui-monospace, monospace;
+  color: var(--ac-d);
+  background: var(--ac-soft);
+  padding: 4px 8px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.qa-q-text {
+  flex: 1;
+}
+
+.qa-badge {
+  font-style: normal;
+  font: 600 0.68rem "JetBrains Mono", ui-monospace, monospace;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--ac-soft) 80%, transparent);
+  color: var(--ac-d);
+  white-space: nowrap;
+}
+
+.qa-plus {
+  position: relative;
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.qa-plus::before,
+.qa-plus::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 7px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ac);
+  transition: transform 0.3s;
+}
+
+.qa-plus::after {
+  transform: rotate(90deg);
+}
+
+.qa.open .qa-plus::after {
+  transform: rotate(0);
+}
+
+.qa-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s ease;
+}
+
+.qa.open .qa-body {
+  grid-template-rows: 1fr;
+}
+
+.qa-body > div {
+  overflow: hidden;
+}
+
+.qa-body p {
+  padding: 0 20px 14px 54px;
+  color: var(--mut);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.qa-inline-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0 20px 18px 54px;
+  font: 700 0.78rem "Plus Jakarta Sans", sans-serif;
+  color: var(--ac-d);
+  text-decoration: none;
+}
+
+.qa-inline-cta:hover {
+  text-decoration: underline;
+}
+
+.faq-empty {
+  padding: 28px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 1px dashed var(--bd);
+  text-align: center;
+  color: var(--mut);
+}
+
+/* Kartu Aside Kanan FAQ */
+.faq-helper-card {
+  gap: 14px;
+  border-color: color-mix(in srgb, var(--ac) 35%, var(--bd));
+}
+
+.faq-helper-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq-helper-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 99px;
+  background: var(--ac-soft);
+  color: var(--ac-d);
+  font: 700 0.7rem "JetBrains Mono", ui-monospace, monospace;
+}
+
+.faq-helper-ic {
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--ac-soft);
+  color: var(--ac-d);
+  display: grid;
+  place-items: center;
+}
+
+.faq-helper-card h3 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.faq-helper-card p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.faq-quick-prompts {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-block: 4px;
+}
+
+.faq-prompt-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--head);
+}
+
+.faq-prompt-chip {
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: var(--bg);
+  border: 1px solid var(--bd);
+  color: var(--tx);
+  font-size: 0.77rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.faq-prompt-chip:hover {
+  border-color: var(--ac);
+  color: var(--head);
+  transform: translateX(3px);
+}
+
+.faq-wa-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 99px;
+  background: var(--ac);
+  color: var(--on-ac);
+  font: 700 0.85rem "Plus Jakarta Sans", sans-serif;
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.faq-wa-cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.faq-helper-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid var(--bd);
+  font-size: 0.75rem;
+  color: var(--mut);
+}
+
+.faq-helper-foot svg {
+  color: var(--ac);
+}
+
+@media (max-width: 980px) {
+  .steps-pipeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .step-spotlight-panel,
+  .faq-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .steps-pipeline-grid {
+    grid-template-columns: 1fr;
+  }
+  .qa-badge {
+    display: none;
+  }
+  .qa-body p,
+  .qa-inline-cta {
+    padding-left: 20px;
+    margin-left: 0;
+  }
+}

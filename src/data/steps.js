@@ -1,0 +1,58 @@
+export const STEPS = [
+  {
+    step: '01',
+    title: 'Chat / Isi Brief',
+    eta: '~2 Menit',
+    tag: 'Tanpa Form Ribet',
+    desc: 'Ceritakan tugas, pedoman kampus, atau kendala error-mu lewat WhatsApp atau form singkat.',
+    detail: 'Kirimkan file soal (PDF/DOCX), dataset (CSV/XLSX), atau potongan kode yang error untuk kami cek.',
+    previewTitle: 'Simulasi Brief Masuk',
+    previewLines: [
+      '📄 File: Dataset_Kuesioner_150_Responden.xlsx',
+      '🎯 Target: Olah Data SmartPLS + Bab IV',
+      '⏰ Deadline: 2 Hari Lagi',
+    ],
+  },
+  {
+    step: '02',
+    title: 'Konsultasi & Estimasi',
+    eta: '< 5 Menit',
+    tag: 'Cek Harga Gratis',
+    desc: 'Tim kami bedah tingkat kesulitan tugasmu dan kirimkan rincian biaya serta estimasi waktu selesai.',
+    detail: 'Harga transparan di awal tanpa biaya tersembunyi. Kamu bebas tanya-jawab metode pengerjaannya.',
+    previewTitle: 'Penawaran Transparan',
+    previewLines: [
+      '✅ Status: Sanggup Dikerjakan (Fast Track)',
+      '💡 Metode: Outer Model, Inner Model & Bootstrapping',
+      '🔒 Jaminan: 100% Privasi + Garansi Revisi',
+    ],
+  },
+  {
+    step: '03',
+    title: 'Eksekusi & Pantau Progres',
+    eta: 'Real-Time',
+    tag: 'Live Update',
+    desc: 'Helper spesialis mengerjakan tugasmu dengan rapi. Kamu bisa pantau progres kapan saja via WA.',
+    detail: 'Setiap tahapan penting (kode jalan, uji validitas lolos, atau draf bab selesai) langsung dikabari.',
+    previewTitle: 'Live Progress Tracker',
+    previewLines: [
+      '⚙️ Tahap 1: Cleaning Data & Setup Environment [Selesai]',
+      '⚙️ Tahap 2: Eksekusi Utama & Validasi Hasil [Selesai]',
+      '⚙️ Tahap 3: Penyusunan Laporan & Dokumentasi [95%]',
+    ],
+  },
+  {
+    step: '04',
+    title: 'Fix Beres & Siap Kumpul!',
+    eta: 'Tepat Waktu',
+    tag: 'Full Garansi',
+    desc: 'Terima file hasil akhir yang rapi beserta panduan penjelasannya. Tenang, tugasmu sudah beres!',
+    detail: 'Butuh penyesuaian atau revisi dari dosen? Tenang, kami bantu revisi dan jelaskan alurnya sampai paham.',
+    previewTitle: 'Paket File Siap Kumpul',
+    previewLines: [
+      '📦 Output_Lengkap_FixBeres.zip (Siap Kumpul)',
+      '📘 Panduan_Penjelasan_Sidang.pdf',
+      '🎉 Status Tugas: 100% FIX BERES!',
+    ],
+  },
+]

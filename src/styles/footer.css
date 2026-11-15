@@ -1,0 +1,198 @@
+/* =========================================================
+   MINIMALIST 3D FLOATING CARD FOOTER
+   ========================================================= */
+.foot-min {
+  background: var(--deep);
+  color: var(--on-deep-mut);
+  padding-block: 36px 130px;
+  border-top: 1px solid hsl(0 0% 100% / 0.08);
+  perspective: 1000px;
+}
+
+.foot-min-3d-bar {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 26px 30px;
+  background:
+    radial-gradient(360px circle at var(--mx) var(--my), hsl(var(--h) 85% 55% / 0.14), transparent 70%),
+    hsl(0 0% 100% / 0.04);
+  border: 1px solid hsl(0 0% 100% / 0.12);
+  box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.55),
+              inset 0 1px 0 hsl(0 0% 100% / 0.16);
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.18s ease-out, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.foot-min-3d-bar:hover {
+  border-color: hsl(var(--h) 85% 58% / 0.45);
+  box-shadow: 0 26px 55px -12px rgba(0, 0, 0, 0.7),
+              0 0 28px -8px hsl(var(--h) 85% 50% / 0.22),
+              inset 0 1px 0 hsl(0 0% 100% / 0.22);
+}
+
+.foot-min-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid hsl(0 0% 100% / 0.08);
+  transform: translateZ(16px);
+}
+
+.foot-min-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.foot-min-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+}
+
+.foot-min-logo i {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--ac);
+  color: var(--on-ac);
+  font: 800 0.74rem "Plus Jakarta Sans", sans-serif;
+  font-style: normal;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 14px hsl(var(--h) 85% 50% / 0.35);
+}
+
+.foot-min-logo b {
+  color: var(--ac);
+}
+
+.foot-min-brand p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--on-deep-mut);
+  padding-left: 14px;
+  border-left: 1px solid hsl(0 0% 100% / 0.14);
+}
+
+.foot-min-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.foot-min-links button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--on-deep-mut);
+  font: 600 0.8rem "Plus Jakarta Sans", sans-serif;
+  padding: 6px 12px;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.foot-min-links button:hover {
+  color: #ffffff;
+  background: hsl(0 0% 100% / 0.06);
+  border-color: hsl(0 0% 100% / 0.12);
+}
+
+.foot-min-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.foot-min-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 99px;
+  background: hsl(0 0% 100% / 0.07);
+  border: 1px solid hsl(0 0% 100% / 0.14);
+  color: #ffffff;
+  font: 600 0.8rem "Plus Jakarta Sans", sans-serif;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.foot-min-wa:hover {
+  border-color: var(--ac);
+  background: hsl(var(--h) 85% 50% / 0.18);
+}
+
+.foot-min-up {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid hsl(0 0% 100% / 0.14);
+  background: hsl(0 0% 100% / 0.06);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.foot-min-up:hover {
+  background: var(--ac);
+  border-color: var(--ac);
+  color: var(--on-ac);
+  transform: translateY(-2px);
+}
+
+.foot-min-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 16px;
+  font-size: 0.78rem;
+  transform: translateZ(10px);
+}
+
+.foot-min-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.foot-min-badges span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--on-deep-mut);
+}
+
+.foot-min-badges svg {
+  color: var(--ac);
+}
+
+@media (max-width: 760px) {
+  .foot-min-3d-bar {
+    padding: 20px;
+  }
+  .foot-min-brand p {
+    border-left: none;
+    padding-left: 0;
+    width: 100%;
+  }
+}
