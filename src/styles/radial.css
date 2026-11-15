@@ -1,14 +1,14 @@
 /* =========================================================
-   360° CIRCULAR NEON RING NAVBAR (SESUAI GAMBAR REFERENSI)
+   WELL-SPACED QUARTER-ARC RADIAL NAVBAR (POJOK KIRI BAWAH)
    ========================================================= */
 .cnav-backdrop {
   position: fixed;
   inset: 0;
   z-index: 69;
-  background: rgba(4, 10, 14, 0.35);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  animation: fadeBackdrop 0.25s ease forwards;
+  background: rgba(4, 10, 14, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  animation: fadeBackdrop 0.22s ease forwards;
 }
 
 @keyframes fadeBackdrop {
@@ -16,125 +16,152 @@
   to { opacity: 1; }
 }
 
-/* Posisi di pojok kanan bawah / tengah bawah yang punya ruang sebaran 360 derajat */
-.cnav {
+.cnav-corner {
   position: fixed;
-  left: 50%;
-  bottom: calc(44px + env(safe-area-inset-bottom, 0px));
-  transform: translateX(-50%);
-  width: 64px;
-  height: 64px;
+  left: 34px;
+  bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+  width: 52px;
+  height: 52px;
   z-index: 75;
-  display: grid;
-  place-items: center;
-  transition: bottom 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Saat dibuka, naik sedikit agar lingkaran bawah tidak keluar layar */
-.cnav.is-open {
-  bottom: calc(130px + env(safe-area-inset-bottom, 0px));
-}
-
-/* Tombol Tengah (Putih Bersih dengan Ikon Menu / X seperti referensi) */
-.cnav-center {
-  position: relative;
-  z-index: 3;
-  width: 62px;
-  height: 62px;
+/* Garis Busur Presisi: Diameter = 2 x 104px = 208px */
+.cnav-single-arc {
+  position: absolute;
+  left: 26px;
+  top: 26px;
+  width: 208px;
+  height: 208px;
+  margin-left: -104px;
+  margin-top: -104px;
   border-radius: 50%;
-  background: #232730;
-  border: 2.2px solid #ffffff;
+  border: 1.5px dashed rgba(255, 255, 255, 0.16);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.4);
+  clip-path: polygon(42% 0%, 100% 0%, 100% 58%, 42% 58%);
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+
+.cnav-corner.is-open .cnav-single-arc {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Tombol Pusat X */
+.cnav-center {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 5;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border-radius: 50%;
+  background: #181d23;
+  border: 2px solid #ffffff;
   color: #ffffff;
   cursor: pointer;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55),
-              0 0 18px rgba(255, 255, 255, 0.18);
-  transition: transform 0.35s cubic-bezier(0.22, 1.4, 0.36, 1),
-              background-color 0.25s ease,
-              box-shadow 0.25s ease,
-              border-color 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
+  transition: transform 0.32s cubic-bezier(0.22, 1.4, 0.36, 1),
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.cnav-center svg,
+.cnav-item svg {
+  display: block;
+  flex-shrink: 0;
 }
 
 .cnav-center:hover {
-  transform: scale(1.08);
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.7),
-              0 0 24px rgba(255, 255, 255, 0.32);
+  transform: scale(1.06);
+  border-color: var(--ac);
 }
 
-.cnav.is-open .cnav-center {
+.cnav-corner.is-open .cnav-center {
   transform: rotate(90deg);
 }
 
-/* Tombol Anak yang Melingkar 360 Derajat */
+/* 5 Tombol Anak (Diameter 36px -> Jarak Antar Lingkaran Lega ~12px) */
 .cnav-item {
   --nx: 0px;
   --ny: 0px;
   --ncol: #2dd4bf;
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 58px;
-  height: 58px;
-  margin-left: -29px;
-  margin-top: -29px;
+  left: 26px;
+  top: 26px;
+  width: 36px;
+  height: 36px;
+  margin-left: -18px;
+  margin-top: -18px;
+  padding: 0;
   border-radius: 50%;
-  background: #232730;
-  border: 2.2px solid var(--ncol);
+  background: #181d23;
+  border: 1.8px solid var(--ncol);
   color: var(--ncol);
   cursor: pointer;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transform: translate(0px, 0px) scale(0.25);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5),
-              0 0 14px color-mix(in srgb, var(--ncol) 35%, transparent),
-              inset 0 0 10px color-mix(in srgb, var(--ncol) 15%, transparent);
-  transition: transform 0.45s cubic-bezier(0.2, 1.35, 0.32, 1),
-              opacity 0.28s ease,
+  transform: translate3d(0, 0, 0) scale(0.2);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.55),
+              0 0 10px color-mix(in srgb, var(--ncol) 24%, transparent);
+  transition: transform 0.38s cubic-bezier(0.22, 1.28, 0.36, 1),
+              opacity 0.22s ease,
               background-color 0.2s ease,
-              color 0.2s ease,
               box-shadow 0.2s ease;
 }
 
-.cnav.is-open .cnav-item {
+.cnav-corner.is-open .cnav-item {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(var(--nx), var(--ny)) scale(1);
+  transform: translate3d(var(--nx), var(--ny), 0) scale(1);
 }
 
-.cnav.is-open .cnav-item:hover,
-.cnav.is-open .cnav-item:focus-visible,
-.cnav.is-open .cnav-item.active {
-  transform: translate(var(--nx), var(--ny)) scale(1.15);
-  background: color-mix(in srgb, var(--ncol) 18%, #232730);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65),
-              0 0 24px color-mix(in srgb, var(--ncol) 65%, transparent),
-              inset 0 0 14px color-mix(in srgb, var(--ncol) 28%, transparent);
+.cnav-corner.is-open .cnav-item:hover,
+.cnav-corner.is-open .cnav-item:focus-visible,
+.cnav-corner.is-open .cnav-item.active {
+  transform: translate3d(var(--nx), var(--ny), 0) scale(1.09);
+  background: color-mix(in srgb, var(--ncol) 22%, #181d23);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7),
+              0 0 16px color-mix(in srgb, var(--ncol) 60%, transparent);
+  z-index: 6;
 }
 
-/* Label Kecil Saat Tombol Di-Hover */
+/* Tooltip Label */
 .cnav-tip {
   position: absolute;
-  bottom: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-4px);
   white-space: nowrap;
   padding: 4px 10px;
   border-radius: 99px;
-  background: #181b22;
+  background: #12161b;
   border: 1px solid var(--ncol);
   color: #ffffff;
-  font: 600 0.72rem "Plus Jakarta Sans", sans-serif;
+  font: 600 0.71rem "Plus Jakarta Sans", sans-serif;
   opacity: 0;
   pointer-events: none;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .cnav-item:hover .cnav-tip,
 .cnav-item:focus-visible .cnav-tip {
   opacity: 1;
-  transform: translateX(-50%) translateY(0);
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 640px) {
+  .cnav-corner {
+    left: 22px;
+    bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  }
 }
