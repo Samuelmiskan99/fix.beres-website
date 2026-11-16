@@ -55,7 +55,7 @@ export default function App() {
         <Marquee />
         <Services />
         <Perks />
-        <Gallery />
+        <Gallery theme={theme} />
         <Pricing />
         <Steps />
         <Faq />

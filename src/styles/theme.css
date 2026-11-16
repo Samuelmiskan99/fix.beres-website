@@ -1,10 +1,314 @@
-/* Mode gelap: hanya mengganti token; hue tetap sama */
-:root[data-theme='dark']{
-  --bg:hsl(var(--h) 30% 4%);--surface:hsl(var(--h) 22% 8%);--tint:hsl(var(--h) 26% 5.5%);
-  --bd:hsl(var(--h) 14% 16%);--tx:hsl(var(--h) 14% 86%);--mut:hsl(var(--h) 10% 62%);--head:hsl(var(--h) 25% 97%);
-  --g1:hsl(var(--h) 90% 76%);--g2:hsl(var(--h) 90% 54%);--mesh:.42;--grain:.09;
-  --ac:hsl(var(--h) 80% 55%);--ac-d:hsl(var(--h) 85% 64%);--ac-soft:hsl(var(--h) 45% 14%);--on-ac:hsl(var(--h) 50% 8%);
-  --deep:hsl(var(--h) 40% 11%);
-  --sh:0 14px 40px rgba(0,0,0,.5);--veil:hsl(var(--h) 40% 3% / .65);color-scheme:dark
+/* =========================================================
+   1. DARK MODE TOKENS ASLI (JANGAN DIHAPUS)
+   ========================================================= */
+:root[data-theme='dark'] {
+  --bg: hsl(var(--h) 30% 4%);
+  --surface: hsl(var(--h) 22% 8%);
+  --tint: hsl(var(--h) 26% 5.5%);
+  --bd: hsl(var(--h) 14% 16%);
+  --tx: hsl(var(--h) 14% 86%);
+  --mut: hsl(var(--h) 10% 62%);
+  --head: hsl(var(--h) 25% 97%);
+  --g1: hsl(var(--h) 90% 76%);
+  --g2: hsl(var(--h) 90% 54%);
+  --mesh: 0.42;
+  --grain: 0.09;
+  --ac: hsl(var(--h) 80% 55%);
+  --ac-d: hsl(var(--h) 85% 64%);
+  --ac-soft: hsl(var(--h) 45% 14%);
+  --on-ac: hsl(var(--h) 50% 8%);
+  --deep: hsl(var(--h) 40% 11%);
+  --sh: 0 14px 40px rgba(0, 0, 0, 0.5);
+  --veil: hsl(var(--h) 40% 3% / 0.65);
+  color-scheme: dark;
 }
-body,.sec,.faq details,.form,.eyebrow,.card,.panel{transition:background-color .4s,color .4s,border-color .4s}
+
+body, .sec, .faq details, .form, .eyebrow, .card, .panel, .perk-min-card, .c-card, .foot-min {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* =========================================================
+   2. LIGHT MODE OVERRIDES (HANYA AKTIF SAAT MODE TERANG)
+   ========================================================= */
+
+/* Radial Navbar di Pojok Kiri Bawah */
+html[data-theme='light'] .cnav-center {
+  background: #ffffff !important;
+  border-color: #0f172a !important;
+  color: #0f172a !important;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.16) !important;
+}
+
+html[data-theme='light'] .cnav-item {
+  background: #ffffff !important;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.14) !important;
+}
+
+html[data-theme='light'] .cnav-single-arc {
+  border-color: rgba(15, 23, 42, 0.2) !important;
+}
+
+html[data-theme='light'] .cnav-tip {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+/* Hero Tornado di Light Mode */
+html[data-theme='light'] .hero-tornado {
+  background: radial-gradient(circle at 50% 35%, hsl(var(--h) 55% 94%), hsl(var(--h) 35% 98%) 75%) !important;
+}
+
+html[data-theme='light'] .hero-tornado h1 {
+  color: #0f172a !important;
+  text-shadow: none !important;
+}
+
+html[data-theme='light'] .hero-tornado .lead,
+html[data-theme='light'] .hero-tornado .trust li {
+  color: #334155 !important;
+}
+
+html[data-theme='light'] .hero-tornado .badge {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: hsl(var(--h) 60% 45% / 0.35) !important;
+  color: #0f172a !important;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Kenapa fix.beres (Perks 3x2 Cards) di Light Mode */
+html[data-theme='light'] .perk-min-card {
+  background: #ffffff !important;
+  border-color: hsl(var(--h) 25% 85%) !important;
+  box-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme='light'] .perk-min-card:hover,
+html[data-theme='light'] .perk-min-card.is-active {
+  border-color: var(--ac) !important;
+  box-shadow: 0 18px 40px -14px rgba(15, 23, 42, 0.14) !important;
+}
+
+html[data-theme='light'] .perk-min-body h3 {
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .perk-min-body p {
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .perk-min-num {
+  color: #94a3b8 !important;
+}
+
+html[data-theme='light'] .perk-min-foot {
+  border-top-color: #e2e8f0 !important;
+}
+
+html[data-theme='light'] .perk-meta-left {
+  color: #64748b !important;
+}
+
+html[data-theme='light'] .perk-meta-right,
+html[data-theme='light'] .perk-meta-link {
+  color: #0f766e !important;
+}
+
+/* Terminal Cara Order di Light Mode */
+html[data-theme='light'] .step-spotlight-terminal {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .terminal-bar {
+  background: #f1f5f9 !important;
+  border-bottom-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .terminal-line {
+  color: #1e293b !important;
+}
+
+/* Section Kontak Kami (Background & 3 Kartu) di Light Mode */
+html[data-theme='light'] #kontak.sec,
+html[data-theme='light'] .sec.dark#kontak {
+  background: hsl(var(--h) 35% 95%) !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] #kontak .eyebrow {
+  color: var(--ac-d) !important;
+}
+
+html[data-theme='light'] #kontak h2 {
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] #kontak .sub {
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .c-card {
+  background: #ffffff !important;
+  border-color: hsl(var(--h) 25% 84%) !important;
+  color: #0f172a !important;
+  box-shadow: 0 18px 38px -14px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme='light'] .c-card:hover {
+  border-color: var(--ac) !important;
+}
+
+html[data-theme='light'] .c-card-title,
+html[data-theme='light'] .c-mode-head strong,
+html[data-theme='light'] .c-ch-val {
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .c-card-sub,
+html[data-theme='light'] .c-mode-info small,
+html[data-theme='light'] .c-ch-label,
+html[data-theme='light'] .c-clean-footer {
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .c-clean-footer {
+  border-top-color: #e2e8f0 !important;
+}
+
+html[data-theme='light'] .c-mode-item,
+html[data-theme='light'] .c-ch-clean {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .c-mode-item:hover,
+html[data-theme='light'] .c-ch-clean:hover {
+  border-color: var(--ac) !important;
+  background: #f1f5f9 !important;
+}
+
+html[data-theme='light'] .c-mode-item.active,
+html[data-theme='light'] .c-ch-clean.active {
+  background: hsl(var(--h) 65% 94%) !important;
+  border-color: var(--ac) !important;
+}
+
+html[data-theme='light'] .c-mode-ic {
+  background: #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .c-mode-item.active .c-mode-ic {
+  background: var(--ac) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .c-mode-eta {
+  background: #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+html[data-theme='light'] .c-mode-item.active .c-mode-eta {
+  background: var(--ac) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .c-mini-btn:not(.primary):not(.copied) {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .c-field label,
+html[data-theme='light'] .c-label-text {
+  color: #334155 !important;
+}
+
+html[data-theme='light'] .c-form input,
+html[data-theme='light'] .c-form select,
+html[data-theme='light'] .c-form textarea {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .c-tag-btn {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .c-tag-btn.on {
+  background: hsl(var(--h) 65% 93%) !important;
+  border-color: var(--ac) !important;
+  color: #0f766e !important;
+}
+
+html[data-theme='light'] .c-submit-btn {
+  background: #0f172a !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .c-submit-btn:hover {
+  background: var(--ac) !important;
+  color: #ffffff !important;
+}
+
+/* Footer Minimalis 3D di Light Mode */
+html[data-theme='light'] .foot-min {
+  background: hsl(var(--h) 35% 95%) !important;
+  border-top-color: #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .foot-min-3d-bar {
+  background:
+    radial-gradient(360px circle at var(--mx) var(--my), hsl(var(--h) 85% 55% / 0.12), transparent 70%),
+    #ffffff !important;
+  border-color: hsl(var(--h) 25% 84%) !important;
+  box-shadow: 0 18px 40px -15px rgba(15, 23, 42, 0.08) !important;
+}
+
+html[data-theme='light'] .foot-min-top {
+  border-bottom-color: #e2e8f0 !important;
+}
+
+html[data-theme='light'] .foot-min-logo {
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .foot-min-brand p {
+  color: #64748b !important;
+  border-left-color: #cbd5e1 !important;
+}
+
+html[data-theme='light'] .foot-min-links button {
+  color: #475569 !important;
+}
+
+html[data-theme='light'] .foot-min-links button:hover {
+  color: #0f172a !important;
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+html[data-theme='light'] .foot-min-wa,
+html[data-theme='light'] .foot-min-up {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+html[data-theme='light'] .foot-min-wa:hover,
+html[data-theme='light'] .foot-min-up:hover {
+  background: var(--ac) !important;
+  border-color: var(--ac) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='light'] .foot-min-badges span {
+  color: #475569 !important;
+}
