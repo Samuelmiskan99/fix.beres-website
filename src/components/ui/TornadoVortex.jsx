@@ -91,6 +91,7 @@ export default function TornadoVortex({ theme = 'dark' }) {
     const geo = new THREE.BufferGeometry()
     geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
     geo.setAttribute('color', new THREE.BufferAttribute(colors, 3))
+    geo.computeBoundingSphere() // <-- Menghilangkan warning NaN bounding sphere Three.js
 
     const spriteCanvas = document.createElement('canvas')
     spriteCanvas.width = 32
@@ -123,6 +124,7 @@ export default function TornadoVortex({ theme = 'dark' }) {
     const linePositions = new Float32Array(RING_COUNT * RING_SEGMENTS * 2 * 3)
     const lineGeo = new THREE.BufferGeometry()
     lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3))
+    lineGeo.computeBoundingSphere() // <-- Menghilangkan warning NaN bounding sphere
     const lineMat = new THREE.LineBasicMaterial({
       color: new THREE.Color('#a7f3d0'),
       transparent: true,

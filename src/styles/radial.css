@@ -1,5 +1,5 @@
 /* =========================================================
-   WELL-SPACED QUARTER-ARC RADIAL NAVBAR (POJOK KIRI BAWAH)
+   CLEAN 6-ITEM QUARTER-ARC RADIAL NAVBAR (WITH THEME TOGGLE)
    ========================================================= */
 .cnav-backdrop {
   position: fixed;
@@ -25,21 +25,21 @@
   z-index: 75;
 }
 
-/* Garis Busur Presisi: Diameter = 2 x 104px = 208px */
+/* Garis Busur Presisi: Diameter = 2 x 114px = 228px */
 .cnav-single-arc {
   position: absolute;
   left: 26px;
   top: 26px;
-  width: 208px;
-  height: 208px;
-  margin-left: -104px;
-  margin-top: -104px;
+  width: 228px;
+  height: 228px;
+  margin-left: -114px;
+  margin-top: -114px;
   border-radius: 50%;
   border: 1.5px dashed rgba(255, 255, 255, 0.16);
   pointer-events: none;
   opacity: 0;
   transform: scale(0.4);
-  clip-path: polygon(42% 0%, 100% 0%, 100% 58%, 42% 58%);
+  clip-path: polygon(40% 0%, 100% 0%, 100% 60%, 40% 60%);
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
 }
 
@@ -68,6 +68,8 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.65);
   transition: transform 0.32s cubic-bezier(0.22, 1.4, 0.36, 1),
               border-color 0.2s ease,
+              background-color 0.25s ease,
+              color 0.2s ease,
               box-shadow 0.2s ease;
 }
 
@@ -86,7 +88,7 @@
   transform: rotate(90deg);
 }
 
-/* 5 Tombol Anak (Diameter 36px -> Jarak Antar Lingkaran Lega ~12px) */
+/* 6 Tombol Anak (Diameter 34px -> Celah Antar Tombol Lega ~10px) */
 .cnav-item {
   --nx: 0px;
   --ny: 0px;
@@ -94,10 +96,10 @@
   position: absolute;
   left: 26px;
   top: 26px;
-  width: 36px;
-  height: 36px;
-  margin-left: -18px;
-  margin-top: -18px;
+  width: 34px;
+  height: 34px;
+  margin-left: -17px;
+  margin-top: -17px;
   padding: 0;
   border-radius: 50%;
   background: #181d23;
@@ -127,7 +129,7 @@
 .cnav-corner.is-open .cnav-item:hover,
 .cnav-corner.is-open .cnav-item:focus-visible,
 .cnav-corner.is-open .cnav-item.active {
-  transform: translate3d(var(--nx), var(--ny), 0) scale(1.09);
+  transform: translate3d(var(--nx), var(--ny), 0) scale(1.1);
   background: color-mix(in srgb, var(--ncol) 22%, #181d23);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7),
               0 0 16px color-mix(in srgb, var(--ncol) 60%, transparent);
